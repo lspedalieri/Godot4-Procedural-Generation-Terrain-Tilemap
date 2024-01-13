@@ -1,0 +1,7 @@
+res://scenes/procedural_world.tscn
+res://resources/world_tileset.tres
+res://resources/tile_map.tres
+res://scripts/TileMap.gd
+res://scenes/world.tscn
+res://scenes/player.tscn
+res://scenes/world_2.tscn

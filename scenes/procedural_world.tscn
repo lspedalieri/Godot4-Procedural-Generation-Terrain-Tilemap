@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3i14440memy"]
+
+[ext_resource type="TileSet" uid="uid://0kegiduvbc6o" path="res://resources/world_tileset.tres" id="1_o7l0k"]
+[ext_resource type="Script" path="res://scripts/TileMap.gd" id="1_rqiqk"]
+[ext_resource type="Texture2D" uid="uid://cjadl68ndkxfa" path="res://resources/tile_map.tres" id="2_eagsn"]
+[ext_resource type="PackedScene" uid="uid://nt74txyyhp2d" path="res://scenes/player.tscn" id="3_ykl3m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_axyu3"]
+frequency = 0.35
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d6q1d"]
+noise = SubResource("FastNoiseLite_axyu3")
+
+[node name="ProceduralWorld" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_rqiqk")
+noise_height_text = ExtResource("2_eagsn")
+noise_tree_text = SubResource("NoiseTexture2D_d6q1d")
+
+[node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
+tile_set = ExtResource("1_o7l0k")
+format = 2
+layer_0/name = "water"
+layer_0/z_index = -1
+layer_1/name = "ground_1"
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "ground_2"
+layer_2/z_index = -1
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "cliff"
+layer_3/y_sort_enabled = true
+layer_3/tile_data = PackedInt32Array()
+layer_4/name = "environment"
+layer_4/y_sort_enabled = true
+layer_4/tile_data = PackedInt32Array()
+
+[node name="Player" parent="." instance=ExtResource("3_ykl3m")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.3, 0.3)
